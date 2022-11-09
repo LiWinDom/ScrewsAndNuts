@@ -1,11 +1,11 @@
 #include "Game.h"
 
-bool Game::checkMove(const uint8_t& x, const uint8_t& y) {
+bool Game::checkMove(const uint8_t& x, const uint8_t& y) const {
 	if (_field[_curMove][x][y] != 0 || _winner != nullptr) return false;
 	return true;
 }
 
-std::vector<std::pair<uint8_t, uint8_t>> Game::getPossibleMoves() {
+std::vector<std::pair<uint8_t, uint8_t>> Game::getPossibleMoves() const {
 	std::vector<std::pair<uint8_t, uint8_t>> possibilities;
 
 	for (uint8_t i = 0; i < _width; ++i) {
