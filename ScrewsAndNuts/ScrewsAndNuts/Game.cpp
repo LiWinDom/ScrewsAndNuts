@@ -110,5 +110,55 @@ bool Game::winCheck(const uint8_t& x, const uint8_t& y) {
 	}
 	_winCombination = std::vector<std::pair<uint8_t, uint8_t>>(0, std::pair<uint8_t, uint8_t>(0, 0));
 
+	// Left diagonal check
+	counter = 0;
+	// Up
+	for (int8_t i = 0; x - i >= 0 && y - i >= 0; ++i) {
+		if (_field[_curMove][x - i][y - i] != _curPlayer->getNumber()) {
+			break;
+		}
+		_winCombination.push_back(std::pair<uint8_t, uint8_t>(x - i, y - i));
+		++counter;
+	}
+	// Down
+	for (int8_t i = 1; x + i < _width && y + i < _height; ++i) {
+		if (_field[_curMove][x + i][y + i] != _curPlayer->getNumber()) {
+			break;
+		}
+		_winCombination.push_back(std::pair<uint8_t, uint8_t>(x + i, y + i));
+		++counter;
+	}
+	// Check
+	if (counter >= _winNumber) {
+		_winner = _curPlayer;
+		return true;
+	}
+	_winCombination = std::vector<std::pair<uint8_t, uint8_t>>(0, std::pair<uint8_t, uint8_t>(0, 0));
+
+	// Right diagonal check
+	counter = 0;
+	// Up
+	for (int8_t i = 0; x - i >= 0 && y + i < _height; ++i) {
+		if (_field[_curMove][x - i][y + i] != _curPlayer->getNumber()) {
+			break;
+		}
+		_winCombination.push_back(std::pair<uint8_t, uint8_t>(x - i, y + i));
+		++counter;
+	}
+	// Down
+	for (int8_t i = 1; x + i < _width && y - i >= 0; ++i) {
+		if (_field[_curMove][x + i][y - i] != _curPlayer->getNumber()) {
+			break;
+		}
+		_winCombination.push_back(std::pair<uint8_t, uint8_t>(x + i, y - i));
+		++counter;
+	}
+	// Check
+	if (counter >= _winNumber) {
+		_winner = _curPlayer;
+		return true;
+	}
+	_winCombination = std::vector<std::pair<uint8_t, uint8_t>>(0, std::pair<uint8_t, uint8_t>(0, 0));
+
 	return false;
 }

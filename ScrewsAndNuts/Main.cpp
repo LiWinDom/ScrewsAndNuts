@@ -20,7 +20,9 @@ void init() {
     window->setVerticalSyncEnabled(true);
     window->setActive(true);
 
-    font.loadFromFile("resourses/Consolas.ttf");
+    if (!font.loadFromFile("resourses/Consolas.ttf")) {
+        throw std::runtime_error("Cannot load the font: \"resourses/Consolas.ttf\"");
+    }
 
     //sf::Image icon;
     //icon.loadFromFile("resourses/icon.png");
@@ -161,6 +163,7 @@ int main() {
         ShowWindow(GetConsoleWindow(), SW_SHOW);
         std::cerr << "Something went wrong. We are sorry about that :(" << std::endl;
         std::cerr << "Error info: " << ex.what() << std::endl;
+        system("pause");
         return 1;
     }
     return 0;
