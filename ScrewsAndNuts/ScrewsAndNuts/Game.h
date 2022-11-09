@@ -39,6 +39,13 @@ public:
 		return _curPlayer;
 	}
 
+	IPlayer* getWaitingPlayer() {
+		if (_curPlayer == _player1) {
+			return _player2;
+		}
+		return _player1;
+	}
+
 	uint8_t getCurMove() {
 		return _curMove;
 	}
@@ -58,7 +65,7 @@ public:
 
 	bool checkMove(const uint8_t&, const uint8_t&);
 
-	std::vector<std::pair<uint8_t, uint8_t>> possibleMoves();
+	std::vector<std::pair<uint8_t, uint8_t>> getPossibleMoves();
 
 	bool move(const uint8_t& x, const uint8_t& y);
 

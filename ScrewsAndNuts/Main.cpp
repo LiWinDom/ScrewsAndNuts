@@ -16,12 +16,12 @@ Game* game;
 void init() {
     std::srand(std::time(nullptr));
 
-    window = new sf::RenderWindow(sf::VideoMode(CELL_SIZE * FIELD_WIDTH, CELL_SIZE * (FIELD_HEIGHT + 1)), "Screws & Nuts [0.1]", sf::Style::Close);
+    window = new sf::RenderWindow(sf::VideoMode(CELL_SIZE * FIELD_WIDTH, CELL_SIZE * (FIELD_HEIGHT + 1)), "Screws & Nuts [0.2]", sf::Style::Close);
     window->setVerticalSyncEnabled(true);
     window->setActive(true);
 
     if (!font.loadFromFile("resourses/Consolas.ttf")) {
-        throw std::runtime_error("Cannot load the font: \"resourses/Consolas.ttf\"");
+        throw std::runtime_error("Cannot load font: \"resourses/Consolas.ttf\"");
     }
 
     //sf::Image icon;
@@ -96,10 +96,13 @@ void display() {
     text.setPosition(CELL_SIZE + CELL_SIZE / 2.0 - CELL_SIZE / 3.0, FIELD_HEIGHT * CELL_SIZE + CELL_SIZE / 2.0 - CELL_SIZE / 3.0);
     text.setFillColor(sf::Color(TEXT_COLOR));
     text.setString("Current move: " + curPlayer->getName());
-
+    
     if (game->getWinner() != nullptr) {
         curPlayer = game->getWinner();
         text.setString("Winner: " + curPlayer->getName());
+    }
+    else if (game->getPossibleMoves().size() < 1) {
+        text.setString("Tie!");
     }
     window->draw(text);
 

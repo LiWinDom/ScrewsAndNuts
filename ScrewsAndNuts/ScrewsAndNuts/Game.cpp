@@ -5,11 +5,11 @@ bool Game::checkMove(const uint8_t& x, const uint8_t& y) {
 	return true;
 }
 
-std::vector<std::pair<uint8_t, uint8_t>> Game::possibleMoves() {
+std::vector<std::pair<uint8_t, uint8_t>> Game::getPossibleMoves() {
 	std::vector<std::pair<uint8_t, uint8_t>> possibilities;
 
-	for (uint8_t i = 0; i < 8; ++i) {
-		for (uint8_t j = 0; j < 8; ++j) {
+	for (uint8_t i = 0; i < _width; ++i) {
+		for (uint8_t j = 0; j < _height; ++j) {
 			if (checkMove(i, j)) {
 				possibilities.push_back(std::pair<uint8_t, uint8_t>(i, j));
 			}

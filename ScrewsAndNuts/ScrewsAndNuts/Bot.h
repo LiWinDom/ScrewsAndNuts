@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+
 #include "IPlayer.h"
 
 class Bot abstract : public IPlayer
@@ -12,5 +14,8 @@ public:
 	bool isBot() const override;
 
 	void think(Game*) const override = 0;
+
+protected:
+	uint16_t scoreCount(const std::vector<std::vector<uint8_t>>&);
 };
 
