@@ -16,7 +16,7 @@ Game* game;
 void init() {
     std::srand(std::time(nullptr));
 
-    window = new sf::RenderWindow(sf::VideoMode(CELL_SIZE * FIELD_WIDTH, CELL_SIZE * (FIELD_HEIGHT + 1)), "Screws & Nuts [0.21]", sf::Style::Close);
+    window = new sf::RenderWindow(sf::VideoMode(CELL_SIZE * FIELD_WIDTH, CELL_SIZE * (FIELD_HEIGHT + 1)), "Screws & Nuts [0.22]", sf::Style::Close);
     window->setVerticalSyncEnabled(true);
     window->setActive(true);
 

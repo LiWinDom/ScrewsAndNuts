@@ -41,6 +41,13 @@ void Game::undo(const uint8_t& movesNum) {
 	_curMove -= std::min(_curMove, movesNum);
 	_winner = nullptr;
 	_winCombination = std::vector<std::pair<uint8_t, uint8_t>>(0, std::pair<uint8_t, uint8_t>(0, 0));
+
+	if (_curPlayer == _player1) {
+		_curPlayer = _player2;
+	}
+	else {
+		_curPlayer = _player1;
+	}
 	return;
 }
 
