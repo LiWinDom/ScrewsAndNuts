@@ -7,11 +7,17 @@
     <ClCompile Include="ScrewsAndNuts\Game.cpp" />
     <ClCompile Include="ScrewsAndNuts\Human.cpp" />
     <ClCompile Include="ScrewsAndNuts\IPlayer.cpp" />
+    <ClCompile Include="ScrewsAndNuts\Bots\ImpossibleBot.cpp" />
+    <ClCompile Include="ScrewsAndNuts\BotThink.cpp" />
+    <ClCompile Include="ScrewsAndNuts\Bots\RandomBot.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ScrewsAndNuts\Bot.h" />
     <ClInclude Include="ScrewsAndNuts\Game.h" />
     <ClInclude Include="ScrewsAndNuts\Human.h" />
     <ClInclude Include="ScrewsAndNuts\IPlayer.h" />
+    <ClInclude Include="ScrewsAndNuts\Bots\ImpossibleBot.h" />
+    <ClInclude Include="ScrewsAndNuts\BotThink.h" />
+    <ClInclude Include="ScrewsAndNuts\Bots\RandomBot.h" />
   </ItemGroup>
 </Project>

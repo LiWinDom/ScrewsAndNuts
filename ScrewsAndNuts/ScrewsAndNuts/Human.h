@@ -12,7 +12,5 @@ public:
 
 
 	virtual bool isBot() const override;
-
-	virtual void think(Game*) const override;
 };
 

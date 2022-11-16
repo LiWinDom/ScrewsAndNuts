@@ -2,6 +2,8 @@
 #include <algorithm>
 #include <vector>
 
+#include "Bot.h"
+#include "BotThink.h"
 #include "IPlayer.h"
 
 class Game final
@@ -62,6 +64,10 @@ public:
 		return _winCombination;
 	}
 
+	uint8_t getWinNumber() {
+		return _winNumber;
+	}
+
 
 	bool checkMove(const uint8_t&, const uint8_t&) const;
 
@@ -69,7 +75,7 @@ public:
 
 	bool move(const uint8_t& x, const uint8_t& y);
 
-	void undo(const uint8_t& = 1);
+	void undo(const uint8_t&);
 
 	void think(const int8_t& = -1, const int8_t& = -1);
 

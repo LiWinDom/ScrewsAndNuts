@@ -6,7 +6,8 @@ bool Game::checkMove(const uint8_t& x, const uint8_t& y) const {
 }
 
 std::vector<std::pair<uint8_t, uint8_t>> Game::getPossibleMoves() const {
-	std::vector<std::pair<uint8_t, uint8_t>> possibilities;
+	std::vector<std::pair<uint8_t, uint8_t>> possibilities(0, std::pair<uint8_t, uint8_t>(0, 0));
+	if (_winner != nullptr) return possibilities;
 
 	for (uint8_t i = 0; i < _width; ++i) {
 		for (uint8_t j = 0; j < _height; ++j) {
@@ -24,9 +25,7 @@ bool Game::move(const uint8_t& x, const uint8_t& y) {
 	_field[_curMove + 1] = _field[_curMove];
 	++_curMove;
 	_field[_curMove][x][y] = _curPlayer->getNumber();
-	if (winCheck(x, y)) {
-		return true;
-	}
+	winCheck(x, y);
 
 	if (_curPlayer == _player1) {
 		_curPlayer = _player2;
@@ -38,27 +37,26 @@ bool Game::move(const uint8_t& x, const uint8_t& y) {
 }
 
 void Game::undo(const uint8_t& movesNum) {
-	if (_winner != nullptr) {
-		if (_curPlayer == _player1) {
-			_curPlayer = _player2;
-		}
-		else {
-			_curPlayer = _player1;
-		}
-	}
-
 	_curMove -= std::min(_curMove, movesNum);
 	_winner = nullptr;
 	_winCombination = std::vector<std::pair<uint8_t, uint8_t>>(0, std::pair<uint8_t, uint8_t>(0, 0));
 
+	if (_curPlayer == _player1) {
+		_curPlayer = _player2;
+	}
+	else {
+		_curPlayer = _player1;
+	}
 	return;
 }
 
 void Game::think(const int8_t& mouseClickX, const int8_t& mouseClickY) {
 	if (_winner != nullptr) return;
+	if (getPossibleMoves().size() <= 0) return;
 
 	if (_curPlayer->isBot()) {
-		_curPlayer->think(this);
+		BotThink bestMove = dynamic_cast<Bot*>(_curPlayer)->think(this);
+		move(bestMove.getMoves()[0].first, bestMove.getMoves()[0].second);
 	}
 	else {
 		if (mouseClickX > -1 && mouseClickX < _width && mouseClickY > -1 && mouseClickY < _height) {

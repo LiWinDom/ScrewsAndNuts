@@ -1,8 +1,6 @@
 #pragma once
 #include <string>
 
-class Game;
-
 class IPlayer abstract
 {
 public:
@@ -26,8 +24,6 @@ public:
 
 	
 	virtual bool isBot() const = 0;
-
-	virtual void think(Game*) const = 0;
 
 private:
 	const uint8_t _number;

@@ -5,6 +5,8 @@
 #include <Windows.h>
 
 #include "Config.h"
+#include "ScrewsAndNuts/Bots/ImpossibleBot.h"
+#include "ScrewsAndNuts/Bots/RandomBot.h"
 #include "ScrewsAndNuts/Game.h"
 #include "ScrewsAndNuts/Human.h"
 
@@ -16,7 +18,7 @@ Game* game;
 void init() {
     std::srand(std::time(nullptr));
 
-    window = new sf::RenderWindow(sf::VideoMode(CELL_SIZE * FIELD_WIDTH, CELL_SIZE * (FIELD_HEIGHT + 1)), "Screws & Nuts [0.23]", sf::Style::Close);
+    window = new sf::RenderWindow(sf::VideoMode(CELL_SIZE * FIELD_WIDTH, CELL_SIZE * (FIELD_HEIGHT + 1)), "Screws & Nuts [beta 1.0]", sf::Style::Close);
     window->setVerticalSyncEnabled(true);
     window->setActive(true);
 
@@ -28,7 +30,7 @@ void init() {
     //icon.loadFromFile("resourses/icon.png");
     //window->setIcon(52, 52, icon.getPixelsPtr());
 
-    game = new Game(FIELD_WIDTH, FIELD_HEIGHT, new Human(1, "Player 1"), new Human(2, "Player 2"));
+    game = new Game(FIELD_WIDTH, FIELD_HEIGHT, new Human(1, "Player 1"), new ImpossibleBot(2));
     return;
 }
 
@@ -130,7 +132,7 @@ void eventProcessing() {
                 game = new Game(FIELD_WIDTH, FIELD_HEIGHT, new Human(1, "Player 1"), new Human(2, "Player 2"));
             }
             if (event.key.code == sf::Keyboard::U) {
-                game->undo();
+                game->undo(1);
             }
         }
 
