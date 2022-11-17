@@ -1,7 +1,7 @@
 #pragma once
 
-#define FIELD_WIDTH		10
-#define FIELD_HEIGHT	10
+#define FIELD_WIDTH		7
+#define FIELD_HEIGHT	8
 
 // Visible options
 #define CELL_SIZE		64

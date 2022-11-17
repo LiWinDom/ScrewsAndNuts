@@ -4,7 +4,7 @@
 class ImpossibleBot final : public Bot
 {
 public:
-	ImpossibleBot(const uint8_t& number) : Bot(number, "テスト", 2) {}
+	ImpossibleBot(const uint8_t& number) : Bot(number, "テスト", 3) {}
 
 	~ImpossibleBot() {};
 
