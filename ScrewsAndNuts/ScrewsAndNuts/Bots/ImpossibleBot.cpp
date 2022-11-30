@@ -33,6 +33,34 @@ BotThink ImpossibleBot::think(Game* game) const {
 			}
 			continue;
 		}
+		// Enemy 32000 score
+		if (curMove.getBestScore().first >= 32000) {
+			continue;
+		}
+
+		// Our 16000 score
+		if (curMove.getBestScore().first >= 16000) {
+			if (curMove.getMoves().size() < bestMove.getMoves().size() || bestMove.getBestScore().first < 16000) {
+				bestMove = curMove;
+			}
+			continue;
+		}
+		// Enemy 16000 score
+		if (curMove.getBestScore().first >= 16000) {
+			continue;
+		}
+
+		// Our 8000 score
+		if (curMove.getBestScore().first >= 8000) {
+			if (curMove.getMoves().size() < bestMove.getMoves().size() || bestMove.getBestScore().first < 8000) {
+				bestMove = curMove;
+			}
+			continue;
+		}
+		// Enemy 8000 score
+		if (curMove.getBestScore().first >= 8000) {
+			continue;
+		}
 
 		if (curMove.getBestScore().first - curMove.getBestScore().second >= bestMove.getBestScore().first - bestMove.getBestScore().second) {
 			if (curMove.getBestScore().first - curMove.getBestScore().second > bestMove.getBestScore().first - bestMove.getBestScore().second) {

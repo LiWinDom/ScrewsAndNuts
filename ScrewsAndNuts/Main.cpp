@@ -20,7 +20,7 @@ void init() {
 
     window = new sf::RenderWindow(sf::VideoMode(CELL_SIZE * FIELD_WIDTH, CELL_SIZE * (FIELD_HEIGHT + 1)), "Screws & Nuts [beta 1.0]", sf::Style::Close);
     window->setVerticalSyncEnabled(true);
-    //window->setFramerateLimit(1);
+    //window->setFramerateLimit(1.5);
     window->setActive(true);
 
     if (!font.loadFromFile("resourses/Consolas.ttf")) {
