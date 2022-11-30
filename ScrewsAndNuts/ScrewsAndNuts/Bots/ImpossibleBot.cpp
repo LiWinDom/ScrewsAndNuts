@@ -23,14 +23,14 @@ BotThink ImpossibleBot::think(Game* game) const {
 		}
 		game->undo(1);
 
-		if (curMove.getBestScore().first >= 16000 && curMove.getBestScore().second < 32000) {
-			bestMove = curMove;
-			if (curMove.getMoves().size() < 2) {
-				break;
+		// Our 32000 score
+		if (curMove.getBestScore().first >= 32000) {
+			if (curMove.getMoves().size() < bestMove.getMoves().size() || bestMove.getBestScore().first < 32000) {
+				bestMove = curMove;
+				if (bestMove.getMoves().size() < 2) {
+					break;
+				}
 			}
-			continue;
-		}
-		if (curMove.getBestScore().second >= 16000) {
 			continue;
 		}
 

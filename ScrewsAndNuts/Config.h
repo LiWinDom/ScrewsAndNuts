@@ -1,6 +1,6 @@
 #pragma once
 
-#define FIELD_WIDTH		7
+#define FIELD_WIDTH		9
 #define FIELD_HEIGHT	8
 
 // Visible options

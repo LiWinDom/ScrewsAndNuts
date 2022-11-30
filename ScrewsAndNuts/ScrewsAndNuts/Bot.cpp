@@ -42,10 +42,18 @@ uint16_t Bot::countScore(const std::vector<std::vector<uint8_t>>& field, const u
 				if (counter >= winNumber - 1) {
 					return 16000;
 				}
+				if (counter >= winNumber - 2) {
+					return 8000;
+				}
 				total += std::pow(counter, counter);
 			}
 			else if (opened == 1) {
-				total += counter;
+				if (counter >= winNumber - 1) {
+					return 8000;
+				}
+				else {
+					total += counter;
+				}
 			}
 
 			// Vertical check
@@ -81,10 +89,18 @@ uint16_t Bot::countScore(const std::vector<std::vector<uint8_t>>& field, const u
 				if (counter >= winNumber - 1) {
 					return 16000;
 				}
+				if (counter >= winNumber - 2) {
+					return 8000;
+				}
 				total += std::pow(counter, counter);
 			}
 			else if (opened == 1) {
-				total += counter;
+				if (counter >= winNumber - 1) {
+					return 8000;
+				}
+				else {
+					total += counter;
+				}
 			}
 
 			// Left diagonal check
@@ -120,10 +136,18 @@ uint16_t Bot::countScore(const std::vector<std::vector<uint8_t>>& field, const u
 				if (counter >= winNumber - 1) {
 					return 16000;
 				}
+				if (counter >= winNumber - 2) {
+					return 8000;
+				}
 				total += std::pow(counter, counter);
 			}
 			else if (opened == 1) {
-				total += counter;
+				if (counter >= winNumber - 1) {
+					return 8000;
+				}
+				else {
+					total += counter;
+				}
 			}
 
 			// Right diagonal check
@@ -159,10 +183,18 @@ uint16_t Bot::countScore(const std::vector<std::vector<uint8_t>>& field, const u
 				if (counter >= winNumber - 1) {
 					return 16000;
 				}
+				if (counter >= winNumber - 2) {
+					return 8000;
+				}
 				total += std::pow(counter, counter);
 			}
 			else if (opened == 1) {
-				total += counter;
+				if (counter >= winNumber - 1) {
+					return 8000;
+				}
+				else {
+					total += counter;
+				}
 			}
 		}
 	}
