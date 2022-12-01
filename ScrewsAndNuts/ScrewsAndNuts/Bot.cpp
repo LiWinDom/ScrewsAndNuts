@@ -7,13 +7,13 @@ bool Bot::isBot() const {
 
 uint16_t Bot::countScore(const std::vector<std::vector<uint8_t>>& field, const uint8_t& winNumber) const {
 	uint16_t total = 0;
-	bool opened4 = false;
-	bool closed4 = false;
-	bool opened3 = false;
+	uint16_t opened4 = 0;
+	uint16_t closed4 = 0;
+	uint16_t opened3 = 0;
 
 	for (uint8_t x = 0; x < field.size(); ++x) {
 		for (uint8_t y = 0; y < field[x].size(); ++y) {
-			//if (field[x][y] == 0) continue;
+			if (field[x][y] == 0) continue;
 
 			// Horizontal count
 			uint8_t counter = 0;
@@ -46,16 +46,16 @@ uint16_t Bot::countScore(const std::vector<std::vector<uint8_t>>& field, const u
 			}
 			if (opened == 2) {
 				if (counter >= winNumber - 1) {
-					opened4 = true;
+					++opened4;
 				}
-				if (counter >= winNumber - 2) {
-					opened3 = true;
+				else if (counter >= winNumber - 2) {
+					++opened3;
 				}
 				total += std::pow(counter, counter);
 			}
 			else if (opened == 1) {
 				if (counter >= winNumber - 1) {
-					closed4 = true;
+					++closed4;
 				}
 				else {
 					total += counter;
@@ -93,16 +93,16 @@ uint16_t Bot::countScore(const std::vector<std::vector<uint8_t>>& field, const u
 			}
 			if (opened == 2) {
 				if (counter >= winNumber - 1) {
-					opened4 = true;
+					++opened4;
 				}
-				if (counter >= winNumber - 2) {
-					opened3 = true;
+				else if (counter >= winNumber - 2) {
+					++opened3;
 				}
 				total += std::pow(counter, counter);
 			}
 			else if (opened == 1) {
 				if (counter >= winNumber - 1) {
-					closed4 = true;
+					++closed4;
 				}
 				else {
 					total += counter;
@@ -140,16 +140,16 @@ uint16_t Bot::countScore(const std::vector<std::vector<uint8_t>>& field, const u
 			}
 			if (opened == 2) {
 				if (counter >= winNumber - 1) {
-					opened4 = true;
+					++opened4;
 				}
-				if (counter >= winNumber - 2) {
-					opened3 = true;
+				else if (counter >= winNumber - 2) {
+					++opened3;
 				}
 				total += std::pow(counter, counter);
 			}
 			else if (opened == 1) {
 				if (counter >= winNumber - 1) {
-					closed4 = true;
+					++closed4;
 				}
 				else {
 					total += counter;
@@ -187,16 +187,16 @@ uint16_t Bot::countScore(const std::vector<std::vector<uint8_t>>& field, const u
 			}
 			if (opened == 2) {
 				if (counter >= winNumber - 1) {
-					opened4 = true;
+					++opened4;
 				}
-				if (counter >= winNumber - 2) {
-					opened3 = true;
+				else if (counter >= winNumber - 2) {
+					++opened3;
 				}
 				total += std::pow(counter, counter);
 			}
 			else if (opened == 1) {
 				if (counter >= winNumber - 1) {
-					closed4 = true;
+					++closed4;
 				}
 				else {
 					total += counter;
@@ -205,7 +205,7 @@ uint16_t Bot::countScore(const std::vector<std::vector<uint8_t>>& field, const u
 		}
 	}
 
-	if (opened4) total = std::max((uint16_t)16000, total);
-	if (closed4 || opened3) total = std::max((uint16_t)8000, total);
+	if (opened4 / 4 > 0 || (closed4 / 4 + opened3 / 2) > 1) total = std::max((uint16_t)16000, total);
+	else if (closed4 / 4 > 0 || opened3 / 3 > 0) total = std::max((uint16_t)8000, total);
 	return total;
 }

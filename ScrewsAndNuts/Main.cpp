@@ -20,7 +20,7 @@ void init() {
 
     window = new sf::RenderWindow(sf::VideoMode(CELL_SIZE * FIELD_WIDTH, CELL_SIZE * (FIELD_HEIGHT + 1)), "Screws & Nuts [beta 1.0]", sf::Style::Close);
     window->setVerticalSyncEnabled(true);
-    //window->setFramerateLimit(1.5);
+    //window->setFramerateLimit(1);
     window->setActive(true);
 
     if (!font.loadFromFile("resourses/Consolas.ttf")) {
@@ -31,7 +31,7 @@ void init() {
     //icon.loadFromFile("resourses/icon.png");
     //window->setIcon(52, 52, icon.getPixelsPtr());
 
-    game = new Game(FIELD_WIDTH, FIELD_HEIGHT, new ImpossibleBot(1), new ImpossibleBot(2));
+    game = new Game(FIELD_WIDTH, FIELD_HEIGHT, new Human(1, "aaa"), new ImpossibleBot(2));
     return;
 }
 
@@ -130,7 +130,7 @@ void eventProcessing() {
         if (event.type == sf::Event::KeyPressed) {
             if (event.key.code == sf::Keyboard::R) {
                 delete game;
-                game = new Game(FIELD_WIDTH, FIELD_HEIGHT, new Human(1, "Player 1"), new Human(2, "Player 2"));
+                game = new Game(FIELD_WIDTH, FIELD_HEIGHT, new Human(1, "Player 1"), new ImpossibleBot(2));
             }
             if (event.key.code == sf::Keyboard::U) {
                 game->undo(1);
