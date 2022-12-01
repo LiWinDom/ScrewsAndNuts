@@ -10,6 +10,7 @@
     <ClCompile Include="ScrewsAndNuts\Bots\ImpossibleBot.cpp" />
     <ClCompile Include="ScrewsAndNuts\BotThink.cpp" />
     <ClCompile Include="ScrewsAndNuts\Bots\RandomBot.cpp" />
+    <ClCompile Include="ScrewsAndNuts\Bots\EasyBot.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ScrewsAndNuts\Bot.h" />
@@ -19,5 +20,6 @@
     <ClInclude Include="ScrewsAndNuts\Bots\ImpossibleBot.h" />
     <ClInclude Include="ScrewsAndNuts\BotThink.h" />
     <ClInclude Include="ScrewsAndNuts\Bots\RandomBot.h" />
+    <ClInclude Include="ScrewsAndNuts\Bots\EasyBot.h" />
   </ItemGroup>
 </Project>

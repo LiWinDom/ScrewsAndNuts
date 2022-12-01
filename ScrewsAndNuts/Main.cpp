@@ -1,10 +1,12 @@
 ﻿#include <algorithm>
 #include <iostream>
 #include <SFML\Graphics.hpp>
+#include <SFML\Audio.hpp>
 #include <string>
 #include <Windows.h>
 
 #include "Config.h"
+#include "ScrewsAndNuts/Bots/EasyBot.h"
 #include "ScrewsAndNuts/Bots/ImpossibleBot.h"
 #include "ScrewsAndNuts/Bots/RandomBot.h"
 #include "ScrewsAndNuts/Game.h"
@@ -13,12 +15,15 @@
 sf::RenderWindow* window;
 sf::Font font;
 
+sf::SoundBuffer bgmBuffer;
+sf::Sound bgmSound;
+
 Game* game;
 
 void init() {
     std::srand(std::time(nullptr));
 
-    window = new sf::RenderWindow(sf::VideoMode(CELL_SIZE * FIELD_WIDTH, CELL_SIZE * (FIELD_HEIGHT + 1)), "Screws & Nuts [beta 1.0]", sf::Style::Close);
+    window = new sf::RenderWindow(sf::VideoMode(CELL_SIZE * FIELD_WIDTH, CELL_SIZE * (FIELD_HEIGHT + 1)), "Screws & Nuts [beta 1.1]", sf::Style::Close);
     window->setVerticalSyncEnabled(true);
     //window->setFramerateLimit(1);
     window->setActive(true);
@@ -27,11 +32,18 @@ void init() {
         throw std::runtime_error("Cannot load font: \"resourses/Consolas.ttf\"");
     }
 
+    if (!bgmBuffer.loadFromFile("resourses/bgm.ogg")) {
+        throw std::runtime_error("Cannot load music: \"resourses/bgm.ogg\"");
+    }
+    bgmSound.setBuffer(bgmBuffer);
+    bgmSound.play();
+    bgmSound.setLoop(true);
+
     //sf::Image icon;
     //icon.loadFromFile("resourses/icon.png");
     //window->setIcon(52, 52, icon.getPixelsPtr());
 
-    game = new Game(FIELD_WIDTH, FIELD_HEIGHT, new Human(1, "aaa"), new ImpossibleBot(2));
+    game = new Game(FIELD_WIDTH, FIELD_HEIGHT, new Human(1, "Player 1"), new Human(2, "Player 2"));
     return;
 }
 
@@ -132,8 +144,11 @@ void eventProcessing() {
                 delete game;
                 game = new Game(FIELD_WIDTH, FIELD_HEIGHT, new Human(1, "Player 1"), new ImpossibleBot(2));
             }
-            if (event.key.code == sf::Keyboard::U) {
-                game->undo(1);
+            if (event.key.code == sf::Keyboard::Z) {
+                uint8_t toUndo = 1;
+                if (game->getCurPlayer()->isBot() && game->getWaitingPlayer()->isBot()) toUndo = 0;
+                else if (game->getCurPlayer()->isBot() || game->getWaitingPlayer()->isBot()) toUndo = 2;
+                game->undo(toUndo);
             }
         }
 
@@ -164,8 +179,8 @@ int main() {
 
         while (window->isOpen()) {
             eventProcessing();
-            game->think();
             display();
+            game->think();
         }
     }
     catch (const std::exception& ex) {
