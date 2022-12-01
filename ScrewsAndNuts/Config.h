@@ -1,11 +1,11 @@
 #pragma once
 
-#define FIELD_WIDTH		10
-#define FIELD_HEIGHT	10
+#define FIELD_WIDTH		16
+#define FIELD_HEIGHT	16
 
 // Visible options
-#define CELL_SIZE		64
-#define TEXT_SIZE		32
+#define CELL_SIZE		48
+#define TEXT_SIZE		24
 #define PADDING_SIZE	5
 #define BORDER_SIZE		2
 

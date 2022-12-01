@@ -43,7 +43,7 @@ void init() {
     //icon.loadFromFile("resourses/icon.png");
     //window->setIcon(52, 52, icon.getPixelsPtr());
 
-    game = new Game(FIELD_WIDTH, FIELD_HEIGHT, new Human(1, "Player 1"), new Human(2, "Player 2"));
+    game = new Game(FIELD_WIDTH, FIELD_HEIGHT, new Human(1, "Player 1"), new ImpossibleBot(2));
     return;
 }
 
